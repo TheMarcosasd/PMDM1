@@ -26,19 +26,31 @@ class MainActivity : ComponentActivity() {
 
         //entorno gráfico -> necesario siempre en el onCreate
         setContent { //recibe una función como parámetros
-            PrimerIntentoTheme { //lo mismo que antes
+            Appleton1Theme { //lo mismo que antes
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = Color.Yellow) { //lo mismo
-                    Saludo(NOMBRE)
+                    Saludo("NOMBRE")
                 }
             }
+            //mensaje de estado (solo lo puedo mirar el Logcat de la terminal de android)
+            Log.d(TAG,"Estoy en onCreate")
+            calcular(a=3,b=5,fun(n1:Int,n2:Int){
+                val suma = n1 + n2
+                Log.d("calcular",suma.toString())
+            })
         }
+        calcular (4, 1, fun(x,y){
+            val resta = x - y
+            Log.d("calcular",resta.toString())
+        })
 
-@Composable
-//mensaje de estado (solo lo puedo mirar el Logcat de la terminal de android)
-Log.d(TAG,"Estoy en onCreate")
+
     }
-
+    fun calcular(a:Int=0,b:Int=0,operacion: (x:Int,y:Int)->Unit){
+        //val operation a+b
+        operacion(a,b)
+        Log.d("calcular",operacion.toString())
+    }
     override fun onStart() {
         super.onStart()
         Log.d(TAG,"He llegado al start")
@@ -98,9 +110,9 @@ fun Saludo(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    PrimerIntentoTheme {
+    Appleton1Theme {
         Surface(modifier = Modifier.fillMaxSize(), color = Color.Yellow) { //lo mismo
-            Saludo(NOMBRE)
+            Saludo("NOMBRE")
         }
     }
 }

@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Appleton1"
 include(":app")
+include(":app:app2")
